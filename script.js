@@ -45,3 +45,9 @@ function createNewCard(curBook) {
     newCard.classList.add("card");
     return newCard;
 }
+
+const showFormBtn = document.querySelector("#new-book");
+const form = document.querySelector("form");
+showFormBtn.addEventListener("click", () => {
+    form.style.visibility = "visible";
+});
