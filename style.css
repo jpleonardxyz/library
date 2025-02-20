@@ -38,6 +38,8 @@ form {
     border: 2px solid black;
     border-radius: 5px;
     width: 100%;
+    position: sticky;
+    top: 10px;
 }
 
 label {
@@ -65,7 +67,7 @@ form > div {
     padding-bottom: 0px;
 }
 
-button:not([type="button"]) {
+button {
     padding: 10px;
     font-size: 20px;
     margin-bottom: 10px;
@@ -74,6 +76,14 @@ button:not([type="button"]) {
     border-radius: 5px;
 }
 
-form > button {
+button[type="button"]{
     font-size: 20px;
+}
+
+.delete {
+    background-color: rgb(248, 79, 79);
+}
+
+.read-status {
+    background-color: rgb(252, 252, 90);
 }
