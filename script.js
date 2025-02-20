@@ -47,6 +47,12 @@ function createNewCard(curBook, index) {
 
     newCard.classList.add("card");
 
+    createDeleteButton(newCard, index);    
+    createReadButton(newCard, index);
+    return newCard;
+}
+
+function createDeleteButton(newCard, index){
     const btnDelete = document.createElement("button");
     btnDelete.textContent = "Delete";
     btnDelete.classList.add("delete");
@@ -56,8 +62,23 @@ function createNewCard(curBook, index) {
         myLibrary.splice(index, 1);
         displayBooks();
     });
+}
 
-    return newCard;
+function createReadButton(newCard, index){
+    const btnRead = document.createElement("button");
+    btnRead.textContent = "Change Read Status";
+    btnRead.classList.add("read-status");
+    newCard.appendChild(btnRead);
+
+    btnRead.addEventListener("click", ()=> {
+        const curBook = myLibrary[index];
+        curBook.changeRead();
+        displayBooks();
+    });
+}
+
+Book.prototype.changeRead = function() {
+    this.isread = this.isread ? false : true;
 }
 
 const showFormBtn = document.querySelector("#new-book");
