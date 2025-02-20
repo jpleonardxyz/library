@@ -10,13 +10,14 @@ function Book(title, author, pages, isread) {
 function addBookToLibrary(title, author, pages, isread) {
     const newBook = new Book(title, author, pages, isread);
     myLibrary.push(newBook);
+    //displayBooks();
 }
 
 function displayBooks() {
     const container = document.querySelector(".container");
+    //container.replaceChildren();
     
     for (const curBook of myLibrary) {
-        console.log(curBook);
         const card = createNewCard(curBook);
         container.appendChild(card);
     }
@@ -50,4 +51,21 @@ const showFormBtn = document.querySelector("#new-book");
 const form = document.querySelector("form");
 showFormBtn.addEventListener("click", () => {
     form.style.visibility = "visible";
+});
+
+const addBookBtn = document.querySelector("[type=button]");
+addBookBtn.addEventListener("click", ()=> {
+    const inputTitle = document.querySelector("#title");
+    const inputAuthor = document.querySelector("#author");
+    const inputPage = document.querySelector("#pages");
+    const inputRead = document.querySelector("#read");
+
+    const title = inputTitle.value;
+    const author = inputTitle.value;
+    const pages = inputPage.value;
+    const read = inputRead.checked ? true : false;
+
+    console.log(title);
+
+    addBookToLibrary(title, author, pages, read);
 });

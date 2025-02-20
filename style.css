@@ -65,7 +65,7 @@ form > div {
     padding-bottom: 0px;
 }
 
-button:not([type="submit"]) {
+button:not([type="button"]) {
     padding: 10px;
     font-size: 20px;
     margin-bottom: 10px;
