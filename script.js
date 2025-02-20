@@ -15,22 +15,17 @@ function addBookToLibrary(title, author, pages, isread) {
 
 function displayBooks() {
     const container = document.querySelector(".container");
+    container.replaceChildren();
     
-    for (const curBook of myLibrary) {
+    for (i = 0; i < myLibrary.length; i++) {
 
-        //this prevents having to remove all children
-        //and redraw them - instead check if a card has already
-        //been created. If so then skip
-        if ("card" in curBook){
-            continue;
-        }
-        const newCard = createNewCard(curBook);
-        container.appendChild(newCard);
-        curBook.card = newCard;
+        const curBook = myLibrary[i];
+        const newCard = createNewCard(curBook, i);
+        container.appendChild(newCard);      
     }
 }
 
-function createNewCard(curBook) {
+function createNewCard(curBook, index) {
     const newCard = document.createElement("div");
 
     const title = document.createElement("h2");
@@ -51,6 +46,17 @@ function createNewCard(curBook) {
     newCard.appendChild(read);
 
     newCard.classList.add("card");
+
+    const btnDelete = document.createElement("button");
+    btnDelete.textContent = "Delete";
+    btnDelete.classList.add("delete");
+    newCard.appendChild(btnDelete);
+
+    btnDelete.addEventListener("click", ()=> {
+        myLibrary.splice(index, 1);
+        displayBooks();
+    });
+
     return newCard;
 }
 
@@ -71,8 +77,6 @@ addBookBtn.addEventListener("click", ()=> {
     const author = inputAuthor.value;
     const pages = inputPage.value;
     const read = inputRead.checked ? true : false;
-
-    console.log(title);
 
     addBookToLibrary(title, author, pages, read);
 });
