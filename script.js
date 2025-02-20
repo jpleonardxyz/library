@@ -10,16 +10,23 @@ function Book(title, author, pages, isread) {
 function addBookToLibrary(title, author, pages, isread) {
     const newBook = new Book(title, author, pages, isread);
     myLibrary.push(newBook);
-    //displayBooks();
+    displayBooks();
 }
 
 function displayBooks() {
     const container = document.querySelector(".container");
-    //container.replaceChildren();
     
     for (const curBook of myLibrary) {
-        const card = createNewCard(curBook);
-        container.appendChild(card);
+
+        //this prevents having to remove all children
+        //and redraw them - instead check if a card has already
+        //been created. If so then skip
+        if ("card" in curBook){
+            continue;
+        }
+        const newCard = createNewCard(curBook);
+        container.appendChild(newCard);
+        curBook.card = newCard;
     }
 }
 
@@ -61,7 +68,7 @@ addBookBtn.addEventListener("click", ()=> {
     const inputRead = document.querySelector("#read");
 
     const title = inputTitle.value;
-    const author = inputTitle.value;
+    const author = inputAuthor.value;
     const pages = inputPage.value;
     const read = inputRead.checked ? true : false;
 
